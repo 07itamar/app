@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1 # API version for Argo CD Application CRD
+kind: Application               # Declares this resource as an Argo CD Application
+metadata:
+  name: grafana                  # Name of the Argo CD Application
+  namespace: argocd             # Namespace where Argo CD is installed (not the app's target namespace)
+  finalizers:
+  - argocd.argoproj.io/resources-finalizer # Finalizer to manage resource cleanup
+spec:
+  project: default              # Argo CD project this app belongs to (default is the built-in project)
+  source:
+    repoURL: 'https://charts.bitnami.com/bitnami' # Git repo containing Kubernetes manifests
+    targetRevision: 9.2.10
+    chart: grafana # Helm chart to deploy
+    helm:
+      version: v3 # Helm version to use 
+      passCredentials: false
+  destination:
+    server: 'https://kubernetes.default.svc' # Kubernetes API server address (default
+    namespace: monitoring # Namespace in the target cluster to deploy the app
+  syncPolicy:
+    automated:                 # Enables automated sync (auto-deploy on changes)
+      prune: true              # Delete resources not defined in source repo
+      selfHeal: true           # Revert out-of-band changes in the cluster
+    syncOptions:               # Additional sync options (see below)
+    - CreateNamespace=true    # Do not auto-create the destination namespace (set to true to enable)
+    - Validate=true            # Validate manifests with 'kubectl apply --dry-run'
+    - PrunePropagationPolicy=Foreground # Use foreground deletion for pruned resources
+    - PruneLast=true           # Prune resources after applying new ones
+    values: |
+      extraArgs:
+        - "--kubelet-insecure-tls"
+        - "--kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname"
+        - "--metric-resolution=15s"
+        - "--kubelet-use-node-status-port=true"
+

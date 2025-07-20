@@ -28,11 +28,10 @@ spec:
     - PruneLast=true           # Prune resources after applying new ones
     values: |
       defaultArgs:
-        - --kubelet-insecure-tls
-        - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
-        - --metric-resolution=30s
-        - --certificates-dir=/tmp
-        - --kubelet-port=10250
-        - --kubelet-https=true
-        - --kubelet-insecure-tls=true
+      - --kubelet-insecure-tls
+      - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+      - --metric-resolution=30s
+      - --certificates-dir=/tmp
+      - --kubelet-port=10250
+      - --kubelet-https=true
 

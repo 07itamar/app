@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: 'https://grafana.github.io/helm-charts' # Git repo containing Kubernetes manifests
     targetRevision: 9.2.10
-    chart: grafana/grafana # Helm chart to deploy
+    chart: grafana # Helm chart to deploy
     helm:
       version: v3 # Helm version to use 
       passCredentials: false

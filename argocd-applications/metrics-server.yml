@@ -26,4 +26,10 @@ spec:
     - Validate=true            # Validate manifests with 'kubectl apply --dry-run'
     - PrunePropagationPolicy=Foreground # Use foreground deletion for pruned resources
     - PruneLast=true           # Prune resources after applying new ones
-    
+    values: |
+      defaultArgs:
+        - --kubelet-insecure-tls
+        - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+        - --metric-resolution=30s
+        - --certificates-dir=/tmp
+

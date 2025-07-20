@@ -1,0 +1,46 @@
+apiVersion: argoproj.io/v1alpha1 # API version for Argo CD Application CRD
+kind: Application               # Declares this resource as an Argo CD Application
+metadata:
+  name: nginx                   # Name of the Argo CD Application
+  namespace: argocd             # Namespace where Argo CD is installed (not the app's target namespace)
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io # Finalizer to manage resource cleanup
+spec:
+  project: default              # Argo CD project this app belongs to (default is the built-in project)
+  source:
+    repoURL: 'https://github.com/07itamar/app.git' # Git repo containing Kubernetes manifests
+    targetRevision: HEAD        # Git branch, tag, or commit to sync from (HEAD = latest on default branch)
+    path: .                     # Path within the repo to the manifests ('.' = root)
+  destination:
+    server: 'https://kubernetes.default.svc' # Kubernetes API server address (default = in-cluster)
+    namespace: prod             # Namespace in the target cluster to deploy the app
+  syncPolicy:
+    automated:                 # Enables automated sync (auto-deploy on changes)
+      prune: true              # Delete resources not defined in source repo
+      selfHeal: true           # Revert out-of-band changes in the cluster
+    syncOptions:               # Additional sync options (see below)
+    - CreateNamespace=false    # Do not auto-create the destination namespace (set to true to enable)
+    - Validate=true            # Validate manifests with 'kubectl apply --dry-run'
+    - PrunePropagationPolicy=Foreground # Use foreground deletion for pruned resources
+    - PruneLast=true           # Prune resources after applying new ones
+
+# --- Available options explained ---
+
+# source.repoURL: Git, Helm, or Kustomize repo URL
+# source.targetRevision: branch, tag, or commit (e.g., 'main', 'v1.0.0', '123abc')
+# source.path: path to manifests or Helm chart in the repo
+
+# destination.server: Kubernetes API server URL ('https://kubernetes.default.svc' for in-cluster)
+# destination.namespace: target namespace for deployment
+
+# syncPolicy.automated.prune: true/false (delete resources not in source)
+# syncPolicy.automated.selfHeal: true/false (auto-revert drift)
+
+# syncOptions:
+#   - CreateNamespace=true/false (auto-create namespace if missing)
+#   - Validate=true/false (validate manifests before apply)
+#   - PrunePropagationPolicy=Foreground/Background/Orphan
+#   - PruneLast=true/false (prune after apply or before)
+#   - ApplyOutOfSyncOnly=true/false (only apply out-of-sync resources)
+#   - Replace=true/false (use 'kubectl replace' instead of 'apply')
+#   - ServerSideApply=true/false (use server-side apply)

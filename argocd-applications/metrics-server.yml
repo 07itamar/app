@@ -32,4 +32,7 @@ spec:
         - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
         - --metric-resolution=30s
         - --certificates-dir=/tmp
+        - --kubelet-port=10250
+        - --kubelet-https=true
+        - --kubelet-insecure-tls=true
 

@@ -27,3 +27,22 @@ spec:
     - PrunePropagationPolicy=Background # Use foreground deletion for pruned resources
     - PruneLast=true           # Prune resources after applying new ones
     - SkipDifferences=true
+  values: |
+    # Configure Kong to run in DB-less mode (no PostgreSQL required)
+    env:
+      database: "off"
+      declarative_config: "/kong_dbless/kong.yml"
+    
+    # Disable PostgreSQL dependency
+    postgresql:
+      enabled: false
+    
+    # Configure Kong for DB-less mode
+    dblessConfig:
+      configMap: ""
+      config: |
+        _format_version: "3.0"
+        _transform: true
+        services: []
+        routes: []
+        plugins: []

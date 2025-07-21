@@ -26,6 +26,7 @@ spec:
     - Validate=true            # Validate manifests with 'kubectl apply --dry-run'
     - PrunePropagationPolicy=Background # Use foreground deletion for pruned resources
     - PruneLast=true           # Prune resources after applying new ones
+    - SkipDifferences=true
     values: |
       extraArgs:
         - "--kubelet-insecure-tls"

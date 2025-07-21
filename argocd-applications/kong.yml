@@ -34,8 +34,8 @@ spec:
     namespace: kong # Namespace in the target cluster to deploy the app
   syncPolicy:
     automated:                 # Enables automated sync (auto-deploy on changes)
-      prune: true              # Delete resources not defined in source repo
-      selfHeal: true           # Revert out-of-band changes in the cluster
+      prune: false              # Delete resources not defined in source repo
+      selfHeal: false           # Revert out-of-band changes in the cluster
     syncOptions:               # Additional sync options (see below)
     - CreateNamespace=true    # Do not auto-create the destination namespace (set to true to enable)
     - Validate=true            # Validate manifests with 'kubectl apply --dry-run'

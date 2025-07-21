@@ -21,7 +21,7 @@ spec:
     syncOptions:               # Additional sync options (see below)
     - CreateNamespace=false    # Do not auto-create the destination namespace (set to true to enable)
     - Validate=true            # Validate manifests with 'kubectl apply --dry-run'
-    - PrunePropagationPolicy=Foreground # Use foreground deletion for pruned resources
+    - PrunePropagationPolicy=Background # Use foreground deletion for pruned resources
     - PruneLast=true           # Prune resources after applying new ones
 
 # --- Available options explained ---
@@ -39,7 +39,7 @@ spec:
 # syncOptions:
 #   - CreateNamespace=true/false (auto-create namespace if missing)
 #   - Validate=true/false (validate manifests before apply)
-#   - PrunePropagationPolicy=Foreground/Background/Orphan
+#   - PrunePropagationPolicy=Background/Background/Orphan
 #   - PruneLast=true/false (prune after apply or before)
 #   - ApplyOutOfSyncOnly=true/false (only apply out-of-sync resources)
 #   - Replace=true/false (use 'kubectl replace' instead of 'apply')

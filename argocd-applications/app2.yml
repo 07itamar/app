@@ -4,7 +4,7 @@ metadata:
   name: nginx2                  # Name of the Argo CD Application
   namespace: argocd             # Namespace where Argo CD is installed (not the app's target namespace)
   finalizers:
-  - argocd.argoproj.io/resources-finalizer # Finalizer to manage resource cleanup
+  - resources-finalizer.argocd.argoproj.io # Finalizer to manage resource cleanup
 spec:
   project: default              # Argo CD project this app belongs to (default is the built-in project)
   source:

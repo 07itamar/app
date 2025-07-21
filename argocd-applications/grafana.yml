@@ -28,9 +28,9 @@ spec:
     - PruneLast=true           # Prune resources after applying new ones
     - SkipDifferences=true
     values: |
-        extraArgs:
-          - "--kubelet-insecure-tls"
-          - "--kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname"
-          - "--metric-resolution=15s"
-          - "--kubelet-use-node-status-port=true"
+      extraArgs:
+        - "--kubelet-insecure-tls"
+        - "--kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname"
+        - "--metric-resolution=15s"
+        - "--kubelet-use-node-status-port=true"
 

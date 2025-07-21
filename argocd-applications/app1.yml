@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: 'https://github.com/07itamar/app.git' # Git repo containing Kubernetes manifests
     targetRevision: HEAD        # Git branch, tag, or commit to sync from (HEAD = latest on default branch)
-    path: app1                     # Path within the repo to the manifests ('.' = root)
+    path: service-1                     # Path within the repo to the manifests ('.' = root)
   destination:
     server: 'https://kubernetes.default.svc' # Kubernetes API server address (default = in-cluster)
     namespace: prod             # Namespace in the target cluster to deploy the app

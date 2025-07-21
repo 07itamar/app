@@ -16,7 +16,7 @@ spec:
       passCredentials: false
   destination:
     server: 'https://kubernetes.default.svc' # Kubernetes API server address (default
-    namespace: monitoring # Namespace in the target cluster to deploy the app
+    namespace: kong # Namespace in the target cluster to deploy the app
   syncPolicy:
     automated:                 # Enables automated sync (auto-deploy on changes)
       prune: true              # Delete resources not defined in source repo

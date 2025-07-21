@@ -32,13 +32,13 @@ spec:
   destination:
     server: 'https://kubernetes.default.svc' # Kubernetes API server address (default
     namespace: kong # Namespace in the target cluster to deploy the app
-  syncPolicy:
-    automated:                 # Enables automated sync (auto-deploy on changes)
-      prune: false              # Delete resources not defined in source repo
-      selfHeal: false           # Revert out-of-band changes in the cluster
-    syncOptions:               # Additional sync options (see below)
-    - CreateNamespace=true    # Do not auto-create the destination namespace (set to true to enable)
-    - Validate=true            # Validate manifests with 'kubectl apply --dry-run'
-    - PrunePropagationPolicy=Background # Use foreground deletion for pruned resources
-    - PruneLast=true           # Prune resources after applying new ones
-    - SkipDifferences=true
+  # syncPolicy:
+  #   automated:                 # Enables automated sync (auto-deploy on changes)
+  #     prune: false              # Delete resources not defined in source repo
+  #     selfHeal: false           # Revert out-of-band changes in the cluster
+  #   syncOptions:               # Additional sync options (see below)
+  #   - CreateNamespace=true    # Do not auto-create the destination namespace (set to true to enable)
+  #   - Validate=true            # Validate manifests with 'kubectl apply --dry-run'
+  #   - PrunePropagationPolicy=Background # Use foreground deletion for pruned resources
+  #   - PruneLast=true           # Prune resources after applying new ones
+  #   - SkipDifferences=true

@@ -38,3 +38,7 @@ spec:
     # Disable Cassandra as well
     cassandra:
       enabled: false
+    
+    # Disable migration job since we're running in DB-less mode
+    migration:
+      enabled: false

@@ -8,14 +8,14 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx1
+      app: service-1
   template:
     metadata:
       labels:
-        app: nginx1
+        app: service-1
     spec:
       containers:
-      - name: nginx1      
+      - name: service-1      
         image: nginx:1.29.0-alpine # Updated to the latest version
         ports:
         - containerPort: 80

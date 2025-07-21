@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1 # API version for Argo CD Application CRD
 kind: Application               # Declares this resource as an Argo CD Application
 metadata:
-  name: nginx1                # Name of the Argo CD Application
+  name: service-1                # Name of the Argo CD Application
   namespace: argocd             # Namespace where Argo CD is installed (not the app's target namespace)
   finalizers:
     - resources-finalizer.argocd.argoproj.io 

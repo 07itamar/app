@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default              # Argo CD project this app belongs to (default is the built-in project)
   source:
-    repoURL: 'https://charts.konghq.com' # Git repo containing Kubernetes manifests
+    repoURL: 'https://charts.bitnami.com/bitnami' # Git repo containing Kubernetes manifests
     targetRevision: 15.4.17
     chart: kong # Helm chart to deploy
     helm:
